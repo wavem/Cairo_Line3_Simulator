@@ -57,12 +57,15 @@ CCairo_Line3_SimulatorDlg::CCairo_Line3_SimulatorDlg(CWnd* pParent /*=NULL*/)
 void CCairo_Line3_SimulatorDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_LIST_MEMO, m_LMemo);
 }
 
 BEGIN_MESSAGE_MAP(CCairo_Line3_SimulatorDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_BTN_TEST, &CCairo_Line3_SimulatorDlg::OnBnClickedBtnTest)
+	ON_BN_CLICKED(IDC_BTN_INIT, &CCairo_Line3_SimulatorDlg::OnBnClickedBtnInit)
 END_MESSAGE_MAP()
 
 
@@ -151,3 +154,43 @@ HCURSOR CCairo_Line3_SimulatorDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+void CCairo_Line3_SimulatorDlg::PrintMsg(LPCTSTR _str) {
+	int t_Idx = m_LMemo.InsertString(-1, _str);
+	m_LMemo.SetCurSel(t_Idx);
+}
+
+void CCairo_Line3_SimulatorDlg::OnBnClickedBtnTest()
+{
+	PrintMsg(L"TEST BTN");
+}
+
+void CCairo_Line3_SimulatorDlg::OnBnClickedBtnInit()
+{
+	// Common
+	CString tempStr;
+
+	// Start Init Routine
+	PrintMsg(L"Init Start");
+
+	u_long local_addr = inet_addr(LOCAL_IP);
+	u_long mcast_addr = inet_addr(MULTICAST_IP);
+	u_long mcast_port = MULTICAST_PORT;
+
+	tempStr = L"Local IP : ";
+	tempStr += inet_ntoa(*(struct in_addr*)&local_addr);
+	PrintMsg(tempStr);
+
+	tempStr = L"Multicast Addr : ";
+	tempStr += inet_ntoa(*(struct in_addr*)&mcast_addr);
+	PrintMsg(tempStr);
+
+	tempStr.Format(L"Multicast Port : %d", mcast_port);
+	PrintMsg(tempStr);
+
+
+
+
+
+	// End Init Routine
+	PrintMsg(L"Init Complete");
+}

@@ -81,11 +81,6 @@ BOOL CCairo_Line3_SimulatorApp::InitInstance()
 		// TODO: Place code here to handle when the dialog is
 		//  dismissed with OK
 	}
-	else if (nResponse == IDCANCEL)
-	{
-		// TODO: Place code here to handle when the dialog is
-		//  dismissed with Cancel
-	}
 
 	// Delete the shell manager created above.
 	if (pShellManager != NULL)

@@ -4,9 +4,10 @@
 
 #pragma once
 
-#define LOCAL_IP "192.168.0.1"
-#define MULTICAST_IP "222.222.222.222"
-#define MULTICAST_PORT 20000;
+#define LOCAL_IP "192.168.0.47"
+#define LOCAL_IP_2 "192.168.0.51"
+#define MULTICAST_IP "239.255.93.18"
+#define MULTICAST_PORT 50101
 
 // CCairo_Line3_SimulatorDlg dialog
 class CCairo_Line3_SimulatorDlg : public CDialogEx
@@ -40,4 +41,10 @@ public:
 public:
 	void PrintMsg(LPCTSTR _str);
 	afx_msg void OnBnClickedBtnInit();
+	afx_msg void OnClose();
+	CWinThread *m_pThread;
+	static UINT Send(LPVOID param);
+	bool m_isWorking;
+	int m_sd;
+	struct sockaddr_in groupSock;
 };

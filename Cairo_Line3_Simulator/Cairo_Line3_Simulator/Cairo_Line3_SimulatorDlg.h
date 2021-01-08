@@ -4,7 +4,7 @@
 
 #pragma once
 
-#define LOCAL_IP "192.168.0.47"
+#define LOCAL_IP "192.168.0.51"
 #define LOCAL_IP_2 "192.168.0.51"
 #define MULTICAST_IP "239.255.93.18"
 #define MULTICAST_PORT 50101

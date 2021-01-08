@@ -234,7 +234,7 @@ void CCairo_Line3_SimulatorDlg::OnBnClickedBtnInit()
 	PrintMsg(tempStr);
 
 
-	local_addr = inet_addr(LOCAL_IP_2);
+	local_addr = inet_addr(LOCAL_IP);
 	struct in_addr localInterface;
 	struct sockaddr_in t_sockaddr;
 
@@ -344,21 +344,21 @@ UINT CCairo_Line3_SimulatorDlg::Send(LPVOID param) {
 	memset(databuf, 0x00, sizeof(databuf));
 	databuf[0] = 0xA5;
 	databuf[1] = 0xA4;
-	databuf[2] = 0x08;
-	databuf[3] = 0x00;
-	databuf[4] = 0x20;
-	databuf[5] = 0x00;
+	databuf[2] = 0x01;
+	databuf[3] = 0x01;
+	databuf[4] = 0x02;
+	databuf[5] = 0x03;
 	databuf[6] = 0x04;
-	databuf[7] = 0x00;
-	databuf[8] = 0x00;
+	databuf[7] = 0x20;
+	databuf[8] = 0x30;
 	databuf[9] = 0x01;
 	databuf[10] = 0x01;
-	databuf[11] = 0x14;
-	databuf[12] = 0x07;
+	databuf[11] = 0x20;
+	databuf[12] = 0x11;
 	databuf[13] = 0x16;
-	databuf[14] = 0x0A;
-	databuf[15] = 0x2E;
-	databuf[16] = 0x16;
+	databuf[14] = 0x16;
+	databuf[15] = 0x31;
+	databuf[16] = 0x59;
 
 	u_long local_addr = inet_addr(LOCAL_IP);
 	struct in_addr localInterface;
@@ -393,19 +393,19 @@ UINT CCairo_Line3_SimulatorDlg::Send(LPVOID param) {
 		//tempStr.Format(L"%d", t_Cnt++);
 
 		for(int i = 0 ; i < BUFF_SIZE ; i++) {
-			databuf[i] = 0xFF;
+			//databuf[i] = 0xFF;
 		}
 
-		local_addr = inet_addr(LOCAL_IP_2);
+		local_addr = inet_addr(LOCAL_IP);
 		localInterface.s_addr = local_addr;
 
-		if(setsockopt(pMain->m_sd, IPPROTO_IP, IP_MULTICAST_IF, (char *)&localInterface, sizeof(localInterface)) < 0) 
-		{
-				pMain->PrintMsg(L"Fail to setsockopt in thread");
+//		if(setsockopt(pMain->m_sd, IPPROTO_IP, IP_MULTICAST_IF, (char *)&localInterface, sizeof(localInterface)) < 0) 
+//		{
+//				pMain->PrintMsg(L"Fail to setsockopt in thread");
 				//closesocket(m_sd);
 				//exit(1);
 				//return;
-		}
+//		}
 		
 
 
@@ -418,9 +418,9 @@ UINT CCairo_Line3_SimulatorDlg::Send(LPVOID param) {
 		}
 		
 		for(int i = 0 ; i < BUFF_SIZE ; i++) {
-			databuf[i] = 0x11;
+			//databuf[i] = 0x11;
 		}
-
+/*
 		local_addr = inet_addr(LOCAL_IP_2);
 		localInterface.s_addr = local_addr;
 		if(setsockopt(pMain->m_sd, IPPROTO_IP, IP_MULTICAST_IF, (char *)&localInterface, sizeof(localInterface)) < 0) 
@@ -438,7 +438,7 @@ UINT CCairo_Line3_SimulatorDlg::Send(LPVOID param) {
 			tempStr.Format(L"LOCAL_2 : %d", t_TestCnt++);
 			pMain->PrintMsg(tempStr);
 		}
-
+*/
 
 
 		Sleep(500);
